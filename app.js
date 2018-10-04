@@ -2,9 +2,27 @@ const express = require("express");
 const app = express();
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+const config = require("./config/database");
+
+mongoose.connect(
+  config.database,
+  { useNewUrlParser: true }
+);
+let db = mongoose.connection;
+// check DB connection
+db.once("open", () => {
+  console.log("Connected to MongoDB");
+});
+// check for DB errors
+db.on("error", err => {
+  console.log(err);
+});
+
 
 const productRoutes = require("./api/routes/products");
 const orderRoutes = require("./api/routes/orders");
+
 
 app.use(morgan("dev"));
 app.use(bodyParser.urlencoded({ extended: false }));
