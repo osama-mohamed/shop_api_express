@@ -32,7 +32,7 @@ const storage = multer.diskStorage({
       "-" +
       Math.random() * 10 ** 21 +  // jshint ignore:line
       path.extname(file.originalname)
-    );
+    );  // jshint ignore:line
   }
 });
 const fileFilter = (req, file, cb) => {

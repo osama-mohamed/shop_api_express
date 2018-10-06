@@ -22,6 +22,7 @@ db.on("error", err => {
 
 const productRoutes = require("./api/routes/products");
 const orderRoutes = require("./api/routes/orders");
+const userRoutes = require("./api/routes/users");
 
 
 app.use(morgan("dev"));
@@ -44,6 +45,7 @@ app.use((req, res, next) => {
 
 app.use("/api/products", productRoutes);
 app.use("/api/orders", orderRoutes);
+app.use("/api/users", userRoutes);
 
 app.use((req, res, next) => {
   const error = new Error("Not Found");
